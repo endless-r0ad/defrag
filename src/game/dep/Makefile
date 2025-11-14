@@ -1491,16 +1491,16 @@ makedirs:
 	@$(MKDIR) $(B)/renderergl2
 	@$(MKDIR) $(B)/renderergl2/glsl
 	@$(MKDIR) $(B)/ded
-	@$(MKDIR) $(B)/$(BASEGAME)/cgame
+	@$(MKDIR) $(B)/$(BASEGAME)/cgame/hud
 	@$(MKDIR) $(B)/$(BASEGAME)/sgame/phy
 	@$(MKDIR) $(B)/$(BASEGAME)/game
-	@$(MKDIR) $(B)/$(BASEGAME)/ui
+	@$(MKDIR) $(B)/$(BASEGAME)/ui/c
 	@$(MKDIR) $(B)/$(BASEGAME)/qcommon
 	@$(MKDIR) $(B)/$(BASEGAME)/vm
-	@$(MKDIR) $(B)/$(TEAMARENA)/cgame
+	@$(MKDIR) $(B)/$(TEAMARENA)/cgame/hud
 	@$(MKDIR) $(B)/$(TEAMARENA)/sgame/phy
 	@$(MKDIR) $(B)/$(TEAMARENA)/game
-	@$(MKDIR) $(B)/$(TEAMARENA)/ui
+	@$(MKDIR) $(B)/$(TEAMARENA)/ui/c
 	@$(MKDIR) $(B)/$(TEAMARENA)/qcommon
 	@$(MKDIR) $(B)/$(TEAMARENA)/vm
 	@$(MKDIR) $(B)/tools/asm
@@ -2436,6 +2436,8 @@ Q3CGOBJ_ = \
   $(B)/$(BASEGAME)/cgame/cg_consolecmds.o \
 	$(B)/$(BASEGAME)/cgame/cg_cvar.o \
   $(B)/$(BASEGAME)/cgame/cg_draw.o \
+  $(B)/$(BASEGAME)/cgame/hud/core.o \
+  $(B)/$(BASEGAME)/cgame/hud/accel.o \
   $(B)/$(BASEGAME)/cgame/cg_drawtools.o \
   $(B)/$(BASEGAME)/cgame/cg_effects.o \
   $(B)/$(BASEGAME)/cgame/cg_ents.o \
@@ -2452,6 +2454,16 @@ Q3CGOBJ_ = \
   $(B)/$(BASEGAME)/cgame/cg_snapshot.o \
   $(B)/$(BASEGAME)/cgame/cg_view.o \
   $(B)/$(BASEGAME)/cgame/cg_weapons.o \
+ \
+  $(B)/$(BASEGAME)/sgame/bg_misc.o \
+  $(B)/$(BASEGAME)/sgame/bg_pmove.o \
+  $(B)/$(BASEGAME)/sgame/bg_slidemove.o \
+  $(B)/$(BASEGAME)/sgame/phy/core.o \
+  $(B)/$(BASEGAME)/sgame/phy/q3a.o \
+  $(B)/$(BASEGAME)/sgame/phy/vq1.o \
+  $(B)/$(BASEGAME)/sgame/phy/vq4.o \
+  $(B)/$(BASEGAME)/sgame/phy/vjk.o \
+  $(B)/$(BASEGAME)/sgame/phy/slidemove.o \
  \
   $(B)/$(BASEGAME)/qcommon/q_math.o \
   $(B)/$(BASEGAME)/qcommon/q_shared.o
@@ -2880,10 +2892,10 @@ $(B)/$(TEAMARENA)/sgame/%.o: $(SGDIR)/%.c
 $(B)/$(TEAMARENA)/sgame/%.asm: $(SGDIR)/%.c $(Q3LCC)
 	$(DO_GAME_Q3LCC_TEAMARENA)
 
-$(B)/$(BASEGAME)/ui/c/%.o: $(Q3UIDIR)/%.c
+$(B)/$(BASEGAME)/ui/c/%.o: $(Q3UIDIR)/c/%.c
 	$(DO_UI_CC)
 
-$(B)/$(BASEGAME)/ui/c/%.asm: $(Q3UIDIR)/%.c $(Q3LCC)
+$(B)/$(BASEGAME)/ui/c/%.asm: $(Q3UIDIR)/c/%.c $(Q3LCC)
 	$(DO_UI_Q3LCC)
 
 $(B)/$(BASEGAME)/ui_ta/bg_%.o: $(GDIR)/bg_%.c
