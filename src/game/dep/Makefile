@@ -3,8 +3,8 @@
 #
 # GNU Make required
 #
-COMPILE_PLATFORM=$(shell uname | sed -e 's/_.*//' | tr '[:upper:]' '[:lower:]' | sed -e 's/\//_/g')
-COMPILE_ARCH=$(shell uname -m | sed -e 's/i.86/x86/' | sed -e 's/^arm.*/arm/')
+COMPILE_PLATFORM = $(shell uname | sed -e 's/_.*//' | tr '[:upper:]' '[:lower:]' | sed -e 's/\//_/g')
+COMPILE_ARCH = $(shell uname -m | sed -e 's/i.86/x86/' | sed -e 's/^arm.*/arm/')
 
 #arm64 hack!
 ifeq ($(shell uname -m), arm64)
@@ -63,7 +63,7 @@ ifeq ($(COMPILE_PLATFORM),cygwin)
 endif
 
 ifndef PLATFORM
-PLATFORM=$(COMPILE_PLATFORM)
+PLATFORM = $(COMPILE_PLATFORM)
 endif
 export PLATFORM
 
@@ -97,7 +97,7 @@ ifeq ($(COMPILE_ARCH),axp)
 endif
 
 ifndef ARCH
-ARCH=$(COMPILE_ARCH)
+ARCH = $(COMPILE_ARCH)
 endif
 export ARCH
 
@@ -113,67 +113,67 @@ endif
 export CROSS_COMPILING
 
 ifndef VERSION
-VERSION=1.36
+VERSION = 1.36
 endif
 
 ifndef CLIENTBIN
-CLIENTBIN=ioquake3
+CLIENTBIN = ioquake3
 endif
 
 ifndef SERVERBIN
-SERVERBIN=ioq3ded
+SERVERBIN = ioq3ded
 endif
 
 ifndef BASEGAME
-BASEGAME=baseq3
+BASEGAME = baseq3
 endif
 
 ifndef BASEGAME_CFLAGS
-BASEGAME_CFLAGS=
+BASEGAME_CFLAGS =
 endif
 
 ifndef TEAMARENA
-TEAMARENA=TEAMARENA
+TEAMARENA = TEAMARENA
 endif
 
 ifndef TEAMARENA_CFLAGS
-TEAMARENA_CFLAGS=-DTEAMARENA
+TEAMARENA_CFLAGS = -DTEAMARENA
 endif
 
 ifndef COPYDIR
-COPYDIR="/usr/local/games/osdf"
+COPYDIR = "/usr/local/games/osdf"
 endif
 
 ifndef COPYBINDIR
-COPYBINDIR=$(COPYDIR)
+COPYBINDIR = $(COPYDIR)
 endif
 
 ifndef MOUNT_DIR
-MOUNT_DIR=code
+MOUNT_DIR = code
 endif
 
 ifndef BUILD_DIR
-BUILD_DIR=bin
+BUILD_DIR = bin
 endif
 
 ifndef TEMPDIR
-TEMPDIR=/tmp
+TEMPDIR = /tmp
 endif
 
 ifndef GENERATE_DEPENDENCIES
-GENERATE_DEPENDENCIES=1
+GENERATE_DEPENDENCIES = 1
 endif
 
 ifndef USE_OPENAL
-USE_OPENAL=1
+USE_OPENAL = 1
 endif
 
 ifndef USE_OPENAL_DLOPEN
-USE_OPENAL_DLOPEN=1
+USE_OPENAL_DLOPEN = 1
 endif
 
 ifndef USE_CURL
-USE_CURL=1
+USE_CURL = 1
 endif
 
 ifndef USE_CURL_DLOPEN
@@ -185,116 +185,117 @@ ifndef USE_CURL_DLOPEN
 endif
 
 ifndef USE_CODEC_VORBIS
-USE_CODEC_VORBIS=1
+USE_CODEC_VORBIS = 1
 endif
 
 ifndef USE_CODEC_OPUS
-USE_CODEC_OPUS=1
+USE_CODEC_OPUS = 1
 endif
 
 ifndef USE_MUMBLE
-USE_MUMBLE=1
+USE_MUMBLE = 1
 endif
 
 ifndef USE_VOIP
-USE_VOIP=1
+USE_VOIP = 1
 endif
 
 ifndef USE_FREETYPE
-USE_FREETYPE=0
+USE_FREETYPE = 0
 endif
 
 ifndef USE_INTERNAL_LIBS
-USE_INTERNAL_LIBS=1
+USE_INTERNAL_LIBS = 1
 endif
 
 ifndef USE_INTERNAL_OGG
-USE_INTERNAL_OGG=$(USE_INTERNAL_LIBS)
+USE_INTERNAL_OGG = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_INTERNAL_VORBIS
-USE_INTERNAL_VORBIS=$(USE_INTERNAL_LIBS)
+USE_INTERNAL_VORBIS = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_INTERNAL_OPUS
-USE_INTERNAL_OPUS=$(USE_INTERNAL_LIBS)
+USE_INTERNAL_OPUS = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_INTERNAL_ZLIB
-USE_INTERNAL_ZLIB=$(USE_INTERNAL_LIBS)
+USE_INTERNAL_ZLIB = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_INTERNAL_JPEG
-USE_INTERNAL_JPEG=$(USE_INTERNAL_LIBS)
+USE_INTERNAL_JPEG = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_LOCAL_HEADERS
-USE_LOCAL_HEADERS=$(USE_INTERNAL_LIBS)
+USE_LOCAL_HEADERS = $(USE_INTERNAL_LIBS)
 endif
 
 ifndef USE_RENDERER_DLOPEN
-USE_RENDERER_DLOPEN=1
+USE_RENDERER_DLOPEN = 1
 endif
 
 ifndef USE_YACC
-USE_YACC=0
+USE_YACC = 0
 endif
 
 ifndef USE_AUTOUPDATER  # DON'T include unless you mean to!
-USE_AUTOUPDATER=0
+USE_AUTOUPDATER = 0
 endif
 
 ifndef DEBUG_CFLAGS
-DEBUG_CFLAGS=-ggdb -O0
+DEBUG_CFLAGS = -ggdb -O0
 endif
 
 #############################################################################
 # Build output
-BD=$(BUILD_DIR)/debug-$(PLATFORM)-$(ARCH)
-BR=$(BUILD_DIR)/release-$(PLATFORM)-$(ARCH)
+BD = $(BUILD_DIR)/debug-$(PLATFORM)-$(ARCH)
+BR = $(BUILD_DIR)/release-$(PLATFORM)-$(ARCH)
 # Source code directories
 ## Engine
-CDIR=$(MOUNT_DIR)/client
-SDIR=$(MOUNT_DIR)/server
-RCOMMONDIR=$(MOUNT_DIR)/rendc
-RGL1DIR=$(MOUNT_DIR)/renderergl1
-RGL2DIR=$(MOUNT_DIR)/renderergl2
-CMDIR=$(MOUNT_DIR)/qcommon
-SDLDIR=$(MOUNT_DIR)/sdl
-ASMDIR=$(MOUNT_DIR)/asm
-SYSDIR=$(MOUNT_DIR)/sys
+CDIR = $(MOUNT_DIR)/client
+SDIR = $(MOUNT_DIR)/server
+RCOMMONDIR = $(MOUNT_DIR)/rendc
+RGL1DIR = $(MOUNT_DIR)/renderergl1
+RGL2DIR = $(MOUNT_DIR)/renderergl2
+CMDIR = $(MOUNT_DIR)/qcommon
+SDLDIR = $(MOUNT_DIR)/sdl
+ASMDIR = $(MOUNT_DIR)/asm
+SYSDIR = $(MOUNT_DIR)/sys
 ## Gamecode
-GDIR=$(MOUNT_DIR)/game
-CGDIR=$(MOUNT_DIR)/cgame
-BLIBDIR=$(MOUNT_DIR)/botlib
-NDIR=$(MOUNT_DIR)/null
-UIDIR=$(MOUNT_DIR)/ui
-Q3UIDIR=$(MOUNT_DIR)/ui
+GDIR = $(MOUNT_DIR)/game
+CGDIR = $(MOUNT_DIR)/cgame
+SGDIR = $(MOUNT_DIR)/sgame
+BLIBDIR = $(MOUNT_DIR)/botlib
+NDIR = $(MOUNT_DIR)/null
+UIDIR = $(MOUNT_DIR)/ui
+Q3UIDIR = $(MOUNT_DIR)/ui
 ## Libraries
-JPDIR=$(MOUNT_DIR)/jpeg-8c
-OGGDIR=$(MOUNT_DIR)/libogg-1.3.3
-VORBISDIR=$(MOUNT_DIR)/libvorbis-1.3.6
-OPUSDIR=$(MOUNT_DIR)/opus-1.2.1
-OPUSFILEDIR=$(MOUNT_DIR)/opusfile-0.9
-ZDIR=$(MOUNT_DIR)/zlib
+JPDIR = $(MOUNT_DIR)/jpeg-8c
+OGGDIR = $(MOUNT_DIR)/libogg-1.3.3
+VORBISDIR = $(MOUNT_DIR)/libvorbis-1.3.6
+OPUSDIR = $(MOUNT_DIR)/opus-1.2.1
+OPUSFILEDIR = $(MOUNT_DIR)/opusfile-0.9
+ZDIR = $(MOUNT_DIR)/zlib
 ## Tools
-TOOLSDIR=$(MOUNT_DIR)/tools
-Q3ASMDIR=$(MOUNT_DIR)/tools/asm
-LBURGDIR=$(MOUNT_DIR)/tools/lcc/lburg
-Q3CPPDIR=$(MOUNT_DIR)/tools/lcc/cpp
-Q3LCCETCDIR=$(MOUNT_DIR)/tools/lcc/etc
-Q3LCCSRCDIR=$(MOUNT_DIR)/tools/lcc/src
+TOOLSDIR = $(MOUNT_DIR)/tools
+Q3ASMDIR = $(MOUNT_DIR)/tools/asm
+LBURGDIR = $(MOUNT_DIR)/tools/lcc/lburg
+Q3CPPDIR = $(MOUNT_DIR)/tools/lcc/cpp
+Q3LCCETCDIR = $(MOUNT_DIR)/tools/lcc/etc
+Q3LCCSRCDIR = $(MOUNT_DIR)/tools/lcc/src
 ## Autoupdater
-AUTOUPDATERSRCDIR=$(MOUNT_DIR)/autoupdater
-LIBTOMCRYPTSRCDIR=$(AUTOUPDATERSRCDIR)/rsa_tools/libtomcrypt-1.17
-TOMSFASTMATHSRCDIR=$(AUTOUPDATERSRCDIR)/rsa_tools/tomsfastmath-0.13.1
+AUTOUPDATERSRCDIR = $(MOUNT_DIR)/autoupdater
+LIBTOMCRYPTSRCDIR = $(AUTOUPDATERSRCDIR)/rsa_tools/libtomcrypt-1.17
+TOMSFASTMATHSRCDIR = $(AUTOUPDATERSRCDIR)/rsa_tools/tomsfastmath-0.13.1
 # Other
-LOKISETUPDIR=misc/setup
-NSISDIR=misc/nsis
-SDLHDIR=$(MOUNT_DIR)/SDL2
-LIBSDIR=$(MOUNT_DIR)/libs
+LOKISETUPDIR = misc/setup
+NSISDIR = misc/nsis
+SDLHDIR = $(MOUNT_DIR)/SDL2
+LIBSDIR = $(MOUNT_DIR)/libs
 
-bin_path=$(shell which $(1) 2> /dev/null)
+bin_path = $(shell which $(1) 2> /dev/null)
 
 # The autoupdater uses curl, so figure out its flags no matter what.
 # We won't need this if we only build the server
@@ -336,7 +337,7 @@ ifeq ($(SDL_CFLAGS),)
 endif
 
 # Add git version info
-USE_GIT=
+USE_GIT =
 ifeq ($(wildcard .git),.git)
   GIT_REV=$(shell git show -s --pretty=format:%h-%ad --date=short)
   ifneq ($(GIT_REV),)
@@ -345,15 +346,14 @@ ifeq ($(wildcard .git),.git)
   endif
 endif
 
-
 #############################################################################
 # SETUP AND BUILD -- LINUX
 #############################################################################
 
-INSTALL=install
-MKDIR=mkdir -p
-EXTRA_FILES=
-CLIENT_EXTRA_FILES=
+INSTALL = install
+MKDIR = mkdir -p
+EXTRA_FILES =
+CLIENT_EXTRA_FILES =
 
 ifneq (,$(findstring "$(COMPILE_PLATFORM)", "linux" "gnu_kfreebsd" "kfreebsd-gnu" "gnu"))
   TOOLS_CFLAGS += -DARCH_STRING=\"$(COMPILE_ARCH)\"
@@ -599,7 +599,6 @@ ifeq ($(PLATFORM),darwin)
 
 else # ifeq darwin
 
-
 #############################################################################
 # SETUP AND BUILD -- MINGW32
 #############################################################################
@@ -713,6 +712,7 @@ ifdef MINGW
 
   ifeq ($(USE_FREETYPE),1)
     FREETYPE_CFLAGS = -Ifreetype2
+	endif
 
   ifeq ($(USE_CURL),1)
     CLIENT_CFLAGS += $(CURL_CFLAGS)
@@ -723,8 +723,12 @@ ifdef MINGW
           CLIENT_LIBS += $(LIBSDIR)/win64/libcurl.a -lcrypt32
         else
           CLIENT_LIBS += $(LIBSDIR)/win32/libcurl.a -lcrypt32
+				endif
       else
         CLIENT_LIBS += $(CURL_LIBS)
+			endif
+		endif
+	endif
 
   ifeq ($(ARCH),x86)
     # build 32bit
@@ -1253,10 +1257,10 @@ BASE_CFLAGS += -Werror-implicit-function-declaration
 
 ifeq ($(V),1)
 echo_cmd=@:
-Q=
+Q =
 else
-echo_cmd=@echo
-Q=@
+echo_cmd = @echo
+Q = @
 endif
 
 define DO_CC
@@ -1357,7 +1361,6 @@ $(echo_cmd) "WINDRES $<"
 $(Q)$(WINDRES) -i $< -o $@
 endef
 
-
 #############################################################################
 # MAIN TARGETS
 #############################################################################
@@ -1393,20 +1396,20 @@ endef
 # README files or whatever else
 define GENERATE_COPY_TARGETS
 $(foreach FILE,$1, \
-  $(eval $(call ADD_COPY_TARGET, \
-    $(FILE), \
-    $(addprefix $(B)/,$(notdir $(FILE))))))
+	$(eval $(call ADD_COPY_TARGET, \
+	$(FILE), \
+	$(addprefix $(B)/,$(notdir $(FILE))))))
 endef
 
 $(call GENERATE_COPY_TARGETS,$(EXTRA_FILES))
 
 ifneq ($(BUILD_CLIENT),0)
-  $(call GENERATE_COPY_TARGETS,$(CLIENT_EXTRA_FILES))
+	$(call GENERATE_COPY_TARGETS,$(CLIENT_EXTRA_FILES))
 endif
 
-NAKED_TARGETS=$(shell echo $(TARGETS) | sed -e "s!$(B)/!!g")
+NAKED_TARGETS = $(shell echo $(TARGETS) | sed -e "s!$(B)/!!g")
 
-print_list=-@for i in $(1); \
+print_list = -@for i in $(1); \
      do \
              echo "    $$i"; \
      done
@@ -1489,11 +1492,13 @@ makedirs:
 	@$(MKDIR) $(B)/renderergl2/glsl
 	@$(MKDIR) $(B)/ded
 	@$(MKDIR) $(B)/$(BASEGAME)/cgame
+	@$(MKDIR) $(B)/$(BASEGAME)/sgame/phy
 	@$(MKDIR) $(B)/$(BASEGAME)/game
 	@$(MKDIR) $(B)/$(BASEGAME)/ui
 	@$(MKDIR) $(B)/$(BASEGAME)/qcommon
 	@$(MKDIR) $(B)/$(BASEGAME)/vm
 	@$(MKDIR) $(B)/$(TEAMARENA)/cgame
+	@$(MKDIR) $(B)/$(TEAMARENA)/sgame/phy
 	@$(MKDIR) $(B)/$(TEAMARENA)/game
 	@$(MKDIR) $(B)/$(TEAMARENA)/ui
 	@$(MKDIR) $(B)/$(TEAMARENA)/qcommon
@@ -1545,15 +1550,15 @@ $(echo_cmd) "TOOLS_CC_DAGCHECK $<"
 $(Q)$(TOOLS_CC) $(TOOLS_CFLAGS) -Wno-unused -o $@ -c $<
 endef
 
-LBURG       = $(B)/tools/lburg/lburg$(TOOLS_BINEXT)
-DAGCHECK_C  = $(B)/tools/rcc/dagcheck.c
-Q3RCC       = $(B)/tools/q3rcc$(TOOLS_BINEXT)
-Q3CPP       = $(B)/tools/q3cpp$(TOOLS_BINEXT)
-Q3LCC       = $(B)/tools/q3lcc$(TOOLS_BINEXT)
-Q3ASM       = $(B)/tools/q3asm$(TOOLS_BINEXT)
-STRINGIFY   = $(B)/tools/stringify$(TOOLS_BINEXT)
+LBURG = $(B)/tools/lburg/lburg$(TOOLS_BINEXT)
+DAGCHECK_C = $(B)/tools/rcc/dagcheck.c
+Q3RCC = $(B)/tools/q3rcc$(TOOLS_BINEXT)
+Q3CPP = $(B)/tools/q3cpp$(TOOLS_BINEXT)
+Q3LCC = $(B)/tools/q3lcc$(TOOLS_BINEXT)
+Q3ASM = $(B)/tools/q3asm$(TOOLS_BINEXT)
+STRINGIFY = $(B)/tools/stringify$(TOOLS_BINEXT)
 
-LBURGOBJ= \
+LBURGOBJ = \
   $(B)/tools/lburg/lburg.o \
   $(B)/tools/lburg/gram.o
 
@@ -1689,7 +1694,6 @@ $(echo_cmd) "UI_Q3LCC_TEAMARENA $<"
 $(Q)$(Q3LCC) $(TEAMARENA_CFLAGS) -DUI -o $@ $<
 endef
 
-
 Q3ASMOBJ = \
   $(B)/tools/asm/q3asm.o \
   $(B)/tools/asm/cmdlib.o
@@ -1700,7 +1704,6 @@ $(B)/tools/asm/%.o: $(Q3ASMDIR)/%.c
 $(Q3ASM): $(Q3ASMOBJ)
 	$(echo_cmd) "LD $@"
 	$(Q)$(TOOLS_CC) $(TOOLS_CFLAGS) $(TOOLS_LDFLAGS) -o $@ $^ $(TOOLS_LIBS)
-
 
 #############################################################################
 # AUTOUPDATER
@@ -1721,7 +1724,6 @@ $(B)/$(AUTOUPDATER_BIN): $(Q3AUTOUPDATEROBJ)
 	$(echo_cmd) "AUTOUPDATER_LD $@"
 	$(Q)$(CC) $(LDFLAGS) -o $@ $(Q3AUTOUPDATEROBJ) $(AUTOUPDATER_LIBS)
 
-
 #############################################################################
 # CLIENT/SERVER
 #############################################################################
@@ -1738,13 +1740,13 @@ Q3OBJ = \
   $(B)/client/cl_scrn.o \
   $(B)/client/cl_ui.o \
   $(B)/client/cl_avi.o \
-  \
+ \
   $(B)/client/cm_load.o \
   $(B)/client/cm_patch.o \
   $(B)/client/cm_polylib.o \
   $(B)/client/cm_test.o \
   $(B)/client/cm_trace.o \
-  \
+ \
   $(B)/client/cmd.o \
   $(B)/client/common.o \
   $(B)/client/cvar.o \
@@ -1755,25 +1757,25 @@ Q3OBJ = \
   $(B)/client/net_chan.o \
   $(B)/client/net_ip.o \
   $(B)/client/huffman.o \
-  \
+ \
   $(B)/client/snd_altivec.o \
   $(B)/client/snd_adpcm.o \
   $(B)/client/snd_dma.o \
   $(B)/client/snd_mem.o \
   $(B)/client/snd_mix.o \
   $(B)/client/snd_wavelet.o \
-  \
+ \
   $(B)/client/snd_main.o \
   $(B)/client/snd_codec.o \
   $(B)/client/snd_codec_wav.o \
   $(B)/client/snd_codec_ogg.o \
   $(B)/client/snd_codec_opus.o \
-  \
+ \
   $(B)/client/qal.o \
   $(B)/client/snd_openal.o \
-  \
+ \
   $(B)/client/cl_curl.o \
-  \
+ \
   $(B)/client/sv_bot.o \
   $(B)/client/sv_ccmds.o \
   $(B)/client/sv_client.o \
@@ -1783,16 +1785,16 @@ Q3OBJ = \
   $(B)/client/sv_net_chan.o \
   $(B)/client/sv_snapshot.o \
   $(B)/client/sv_world.o \
-  \
+ \
   $(B)/client/q_math.o \
   $(B)/client/q_shared.o \
-  \
+ \
   $(B)/client/unzip.o \
   $(B)/client/ioapi.o \
   $(B)/client/puff.o \
   $(B)/client/vm.o \
   $(B)/client/vm_interpreted.o \
-  \
+ \
   $(B)/client/be_aas_bspq3.o \
   $(B)/client/be_aas_cluster.o \
   $(B)/client/be_aas_debug.o \
@@ -1821,10 +1823,10 @@ Q3OBJ = \
   $(B)/client/l_precomp.o \
   $(B)/client/l_script.o \
   $(B)/client/l_struct.o \
-  \
+ \
   $(B)/client/sdl_input.o \
   $(B)/client/sdl_snd.o \
-  \
+ \
   $(B)/client/con_log.o \
   $(B)/client/sys_autoupdater.o \
   $(B)/client/sys_main.o
@@ -1875,7 +1877,7 @@ Q3R2OBJ = \
   $(B)/renderergl2/tr_surface.o \
   $(B)/renderergl2/tr_vbo.o \
   $(B)/renderergl2/tr_world.o \
-  \
+ \
   $(B)/renderergl1/sdl_gamma.o \
   $(B)/renderergl1/sdl_glimp.o
 
@@ -1940,7 +1942,7 @@ Q3ROBJ = \
   $(B)/renderergl1/tr_sky.o \
   $(B)/renderergl1/tr_surface.o \
   $(B)/renderergl1/tr_world.o \
-  \
+ \
   $(B)/renderergl1/sdl_gamma.o \
   $(B)/renderergl1/sdl_glimp.o
 
@@ -1964,10 +1966,10 @@ ifneq ($(USE_INTERNAL_JPEG),0)
     $(B)/renderergl1/jcapimin.o \
     $(B)/renderergl1/jcapistd.o \
     $(B)/renderergl1/jcarith.o \
-    $(B)/renderergl1/jccoefct.o  \
+    $(B)/renderergl1/jccoefct.o \
     $(B)/renderergl1/jccolor.o \
     $(B)/renderergl1/jcdctmgr.o \
-    $(B)/renderergl1/jchuff.o   \
+    $(B)/renderergl1/jchuff.o \
     $(B)/renderergl1/jcinit.o \
     $(B)/renderergl1/jcmainct.o \
     $(B)/renderergl1/jcmarker.o \
@@ -2034,7 +2036,7 @@ Q3OBJ += \
   $(B)/client/opus/opus_multistream_encoder.o \
   $(B)/client/opus/opus_multistream_decoder.o \
   $(B)/client/opus/repacketizer.o \
-  \
+ \
   $(B)/client/opus/bands.o \
   $(B)/client/opus/celt.o \
   $(B)/client/opus/cwrs.o \
@@ -2053,7 +2055,7 @@ Q3OBJ += \
   $(B)/client/opus/quant_bands.o \
   $(B)/client/opus/rate.o \
   $(B)/client/opus/vq.o \
-  \
+ \
   $(B)/client/opus/CNG.o \
   $(B)/client/opus/code_signs.o \
   $(B)/client/opus/init_decoder.o \
@@ -2131,7 +2133,7 @@ Q3OBJ += \
   $(B)/client/opus/stereo_encode_pred.o \
   $(B)/client/opus/stereo_find_predictor.o \
   $(B)/client/opus/stereo_quant_pred.o \
-  \
+ \
   $(B)/client/opus/apply_sine_window_FLP.o \
   $(B)/client/opus/corrMatrix_FLP.o \
   $(B)/client/opus/encode_frame_FLP.o \
@@ -2160,7 +2162,7 @@ Q3OBJ += \
   $(B)/client/opus/scale_vector_FLP.o \
   $(B)/client/opus/schur_FLP.o \
   $(B)/client/opus/sort_FLP.o \
-  \
+ \
   $(B)/client/http.o \
   $(B)/client/info.o \
   $(B)/client/internal.o \
@@ -2282,7 +2284,7 @@ endif
 
 ifneq ($(strip $(LIBSDLMAIN)),)
 ifneq ($(strip $(LIBSDLMAINSRC)),)
-$(LIBSDLMAIN) : $(LIBSDLMAINSRC)
+$(LIBSDLMAIN): $(LIBSDLMAINSRC)
 ifeq ($(PLATFORM),darwin)
 	$(LIPO) -extract $(MACOSX_ARCH) $< -o $@
 else
@@ -2291,8 +2293,6 @@ endif
 	$(RANLIB) $@
 endif
 endif
-
-
 
 #############################################################################
 # DEDICATED SERVER
@@ -2308,7 +2308,7 @@ Q3DOBJ = \
   $(B)/ded/sv_net_chan.o \
   $(B)/ded/sv_snapshot.o \
   $(B)/ded/sv_world.o \
-  \
+ \
   $(B)/ded/cm_load.o \
   $(B)/ded/cm_patch.o \
   $(B)/ded/cm_polylib.o \
@@ -2323,15 +2323,15 @@ Q3DOBJ = \
   $(B)/ded/net_chan.o \
   $(B)/ded/net_ip.o \
   $(B)/ded/huffman.o \
-  \
+ \
   $(B)/ded/q_math.o \
   $(B)/ded/q_shared.o \
-  \
+ \
   $(B)/ded/unzip.o \
   $(B)/ded/ioapi.o \
   $(B)/ded/vm.o \
   $(B)/ded/vm_interpreted.o \
-  \
+ \
   $(B)/ded/be_aas_bspq3.o \
   $(B)/ded/be_aas_cluster.o \
   $(B)/ded/be_aas_debug.o \
@@ -2360,11 +2360,11 @@ Q3DOBJ = \
   $(B)/ded/l_precomp.o \
   $(B)/ded/l_script.o \
   $(B)/ded/l_struct.o \
-  \
+ \
   $(B)/ded/null_client.o \
   $(B)/ded/null_input.o \
   $(B)/ded/null_snddma.o \
-  \
+ \
   $(B)/ded/con_log.o \
   $(B)/ded/sys_autoupdater.o \
   $(B)/ded/sys_main.o
@@ -2427,19 +2427,14 @@ $(B)/$(SERVERBIN)$(FULLBINEXT): $(Q3DOBJ)
 	$(echo_cmd) "LD $@"
 	$(Q)$(CC) $(CFLAGS) $(LDFLAGS) $(NOTSHLIBLDFLAGS) -o $@ $(Q3DOBJ) $(LIBS)
 
-
-
 #############################################################################
 ## BASEQ3 CGAME
 #############################################################################
 
 Q3CGOBJ_ = \
   $(B)/$(BASEGAME)/cgame/cg_main.o \
-  $(B)/$(BASEGAME)/cgame/bg_misc.o \
-  $(B)/$(BASEGAME)/cgame/bg_pmove.o \
-  $(B)/$(BASEGAME)/cgame/bg_slidemove.o \
-  $(B)/$(BASEGAME)/cgame/bg_lib.o \
   $(B)/$(BASEGAME)/cgame/cg_consolecmds.o \
+	$(B)/$(BASEGAME)/cgame/cg_cvar.o \
   $(B)/$(BASEGAME)/cgame/cg_draw.o \
   $(B)/$(BASEGAME)/cgame/cg_drawtools.o \
   $(B)/$(BASEGAME)/cgame/cg_effects.o \
@@ -2457,7 +2452,7 @@ Q3CGOBJ_ = \
   $(B)/$(BASEGAME)/cgame/cg_snapshot.o \
   $(B)/$(BASEGAME)/cgame/cg_view.o \
   $(B)/$(BASEGAME)/cgame/cg_weapons.o \
-  \
+ \
   $(B)/$(BASEGAME)/qcommon/q_math.o \
   $(B)/$(BASEGAME)/qcommon/q_shared.o
 
@@ -2502,7 +2497,7 @@ MPCGOBJ_ = \
   $(B)/$(TEAMARENA)/cgame/cg_view.o \
   $(B)/$(TEAMARENA)/cgame/cg_weapons.o \
   $(B)/$(TEAMARENA)/ui_ta/ui_shared.o \
-  \
+ \
   $(B)/$(TEAMARENA)/qcommon/q_math.o \
   $(B)/$(TEAMARENA)/qcommon/q_shared.o
 
@@ -2516,8 +2511,6 @@ $(B)/$(TEAMARENA)/cgame$(SHLIBNAME): $(MPCGOBJ)
 $(B)/$(TEAMARENA)/vm/cgame.qvm: $(MPCGVMOBJ) $(CGDIR)/cg_syscalls.asm $(Q3ASM)
 	$(echo_cmd) "Q3ASM $@"
 	$(Q)$(Q3ASM) -o $@ $(MPCGVMOBJ) $(CGDIR)/cg_syscalls.asm
-
-
 
 #############################################################################
 ## BASEQ3 GAME
@@ -2555,7 +2548,14 @@ Q3GOBJ_ = \
   $(B)/$(BASEGAME)/sgame/g_trigger.o \
   $(B)/$(BASEGAME)/sgame/g_utils.o \
   $(B)/$(BASEGAME)/sgame/g_weapon.o \
-  \
+ \
+	$(B)/$(BASEGAME)/sgame/phy/core.o \
+	$(B)/$(BASEGAME)/sgame/phy/q3a.o \
+	$(B)/$(BASEGAME)/sgame/phy/slidemove.o \
+	$(B)/$(BASEGAME)/sgame/phy/vjk.o \
+	$(B)/$(BASEGAME)/sgame/phy/vq1.o \
+	$(B)/$(BASEGAME)/sgame/phy/vq4.o \
+ \
   $(B)/$(BASEGAME)/qcommon/q_math.o \
   $(B)/$(BASEGAME)/qcommon/q_shared.o
 
@@ -2606,7 +2606,7 @@ MPGOBJ_ = \
   $(B)/$(TEAMARENA)/sgame/g_trigger.o \
   $(B)/$(TEAMARENA)/sgame/g_utils.o \
   $(B)/$(TEAMARENA)/sgame/g_weapon.o \
-  \
+ \
   $(B)/$(TEAMARENA)/qcommon/q_math.o \
   $(B)/$(TEAMARENA)/qcommon/q_shared.o
 
@@ -2621,14 +2621,12 @@ $(B)/$(TEAMARENA)/vm/qagame.qvm: $(MPGVMOBJ) $(GDIR)/g_syscalls.asm $(Q3ASM)
 	$(echo_cmd) "Q3ASM $@"
 	$(Q)$(Q3ASM) -o $@ $(MPGVMOBJ) $(GDIR)/g_syscalls.asm
 
-
-
 #############################################################################
 ## BASEQ3 UI
 #############################################################################
 
 Q3UIOBJ_ = \
-  $(B)/$(BASEGAME)/ui_ta/ui_main.o \
+  $(B)/$(BASEGAME)/ui/c/main.o \
   $(B)/$(BASEGAME)/ui_ta/bg_misc.o \
   $(B)/$(BASEGAME)/ui_ta/bg_lib.o \
   $(B)/$(BASEGAME)/ui_ta/ui_addbots.o \
@@ -2669,7 +2667,7 @@ Q3UIOBJ_ = \
   $(B)/$(BASEGAME)/ui_ta/ui_team.o \
   $(B)/$(BASEGAME)/ui_ta/ui_teamorders.o \
   $(B)/$(BASEGAME)/ui_ta/ui_video.o \
-  \
+ \
   $(B)/$(BASEGAME)/qcommon/q_math.o \
   $(B)/$(BASEGAME)/qcommon/q_shared.o
 
@@ -2694,10 +2692,10 @@ MPUIOBJ_ = \
   $(B)/$(TEAMARENA)/ui_ta/ui_gameinfo.o \
   $(B)/$(TEAMARENA)/ui_ta/ui_players.o \
   $(B)/$(TEAMARENA)/ui_ta/ui_shared.o \
-  \
+ \
   $(B)/$(TEAMARENA)/ui_ta/bg_misc.o \
   $(B)/$(TEAMARENA)/ui_ta/bg_lib.o \
-  \
+ \
   $(B)/$(TEAMARENA)/qcommon/q_math.o \
   $(B)/$(TEAMARENA)/qcommon/q_shared.o
 
@@ -2711,8 +2709,6 @@ $(B)/$(TEAMARENA)/ui$(SHLIBNAME): $(MPUIOBJ)
 $(B)/$(TEAMARENA)/vm/ui.qvm: $(MPUIVMOBJ) $(UIDIR)/ui_syscalls.asm $(Q3ASM)
 	$(echo_cmd) "Q3ASM $@"
 	$(Q)$(Q3ASM) -o $@ $(MPUIVMOBJ) $(UIDIR)/ui_syscalls.asm
-
-
 
 #############################################################################
 ## CLIENT/SERVER RULES
@@ -2776,7 +2772,6 @@ $(B)/client/%.o: $(SYSDIR)/%.m
 $(B)/client/win_resource.o: $(SYSDIR)/win_resource.rc $(SYSDIR)/win_manifest.xml
 	$(DO_WINDRES)
 
-
 $(B)/renderergl1/%.o: $(CMDIR)/%.c
 	$(DO_REF_CC)
 
@@ -2806,7 +2801,6 @@ $(B)/renderergl2/%.o: $(RCOMMONDIR)/%.c
 
 $(B)/renderergl2/%.o: $(RGL2DIR)/%.c
 	$(DO_REF_CC)
-
 
 $(B)/ded/%.o: $(ASMDIR)/%.s
 	$(DO_AS)
@@ -2846,7 +2840,6 @@ ifeq ($(USE_GIT),1)
   $(B)/ded/common.o : .git
 endif
 
-
 #############################################################################
 ## GAME MODULE RULES
 #############################################################################
@@ -2875,19 +2868,23 @@ $(B)/$(TEAMARENA)/cgame/bg_%.asm: $(GDIR)/bg_%.c $(Q3LCC)
 $(B)/$(TEAMARENA)/cgame/%.asm: $(CGDIR)/%.c $(Q3LCC)
 	$(DO_CGAME_Q3LCC_TEAMARENA)
 
-
-$(B)/$(BASEGAME)/sgame/%.o: $(GDIR)/%.c
+$(B)/$(BASEGAME)/sgame/%.o: $(SGDIR)/%.c
 	$(DO_GAME_CC)
 
-$(B)/$(BASEGAME)/sgame/%.asm: $(GDIR)/%.c $(Q3LCC)
+$(B)/$(BASEGAME)/sgame/%.asm: $(SGDIR)/%.c $(Q3LCC)
 	$(DO_GAME_Q3LCC)
 
-$(B)/$(TEAMARENA)/sgame/%.o: $(GDIR)/%.c
+$(B)/$(TEAMARENA)/sgame/%.o: $(SGDIR)/%.c
 	$(DO_GAME_CC_TEAMARENA)
 
-$(B)/$(TEAMARENA)/sgame/%.asm: $(GDIR)/%.c $(Q3LCC)
+$(B)/$(TEAMARENA)/sgame/%.asm: $(SGDIR)/%.c $(Q3LCC)
 	$(DO_GAME_Q3LCC_TEAMARENA)
 
+$(B)/$(BASEGAME)/ui/c/%.o: $(Q3UIDIR)/%.c
+	$(DO_UI_CC)
+
+$(B)/$(BASEGAME)/ui/c/%.asm: $(Q3UIDIR)/%.c $(Q3LCC)
+	$(DO_UI_Q3LCC)
 
 $(B)/$(BASEGAME)/ui_ta/bg_%.o: $(GDIR)/bg_%.c
 	$(DO_UI_CC)
@@ -2913,7 +2910,6 @@ $(B)/$(TEAMARENA)/ui_ta/bg_%.asm: $(GDIR)/bg_%.c $(Q3LCC)
 $(B)/$(TEAMARENA)/ui_ta/%.asm: $(UIDIR)/%.c $(Q3LCC)
 	$(DO_UI_Q3LCC_TEAMARENA)
 
-
 $(B)/$(BASEGAME)/qcommon/%.o: $(CMDIR)/%.c
 	$(DO_SHLIB_CC)
 
@@ -2926,7 +2922,6 @@ $(B)/$(TEAMARENA)/qcommon/%.o: $(CMDIR)/%.c
 $(B)/$(TEAMARENA)/qcommon/%.asm: $(CMDIR)/%.c $(Q3LCC)
 	$(DO_Q3LCC_TEAMARENA)
 
-
 #############################################################################
 # MISC
 #############################################################################
@@ -2936,7 +2931,6 @@ OBJ = $(Q3OBJ) $(Q3ROBJ) $(Q3R2OBJ) $(Q3DOBJ) $(JPGOBJ) \
   $(MPGVMOBJ) $(Q3GVMOBJ) $(Q3CGVMOBJ) $(MPCGVMOBJ) $(Q3UIVMOBJ) $(MPUIVMOBJ)
 TOOLSOBJ = $(LBURGOBJ) $(Q3CPPOBJ) $(Q3RCCOBJ) $(Q3LCCOBJ) $(Q3ASMOBJ)
 STRINGOBJ = $(Q3R2STRINGOBJ)
-
 
 copyfiles: release
 	@if [ ! -d $(COPYDIR)/$(BASEGAME) ]; then echo "You need to set COPYDIR to where your Quake3 data is!"; fi
@@ -3047,8 +3041,8 @@ dist:
 #############################################################################
 
 ifneq ($(B),)
-  OBJ_D_FILES=$(filter %.d,$(OBJ:%.o=%.d))
-  TOOLSOBJ_D_FILES=$(filter %.d,$(TOOLSOBJ:%.o=%.d))
+  OBJ_D_FILES=$(filter %.d,$(OBJ: %.o=%.d))
+  TOOLSOBJ_D_FILES=$(filter %.d,$(TOOLSOBJ: %.o=%.d))
   -include $(OBJ_D_FILES) $(TOOLSOBJ_D_FILES)
 endif
 

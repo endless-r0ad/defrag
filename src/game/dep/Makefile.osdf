@@ -6,19 +6,19 @@
 
 # Repository's Root folder 
 #   In relationship to this makefile
-ROOTDIR=../..
+ROOTDIR=../../..
 
 
 # Mod Configuration
-MODNAME=osdf
+MODNAME=game
 
 # Output dir for binaries
 OUTDIR=${ROOTDIR}/bin
 # Compilation root folder
 #   Where the project is stored, in the way ioq3 Makefile expects it
-SRCDIR=${ROOTDIR}/src/osdf-ioq3/
+SRCDIR=${ROOTDIR}/src
 # Folder containing the modded source code
-CODEDIR=${SRCDIR}/code
+CODEDIR=${SRCDIR}/game
 ## Future: src/osdf-mod/  . or ./code
 
 # Options:
